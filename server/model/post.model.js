@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema({
     },
     content:{
         type:String,
-        required: [true, "La fecha del proyecto es requerida para guardar el registro"]
+        required: [true, "El post debe tener contenido"]
     },
     likes:[
 

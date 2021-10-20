@@ -1,32 +1,32 @@
 const { json } = require('express');
-const Project = require('../model/project.model');
+const Post = require('../model/post.model');
 
 module.exports.crear = (req, res) => {
-    Project.create(req.body)
+    Post.create(req.body)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 }
 
 module.exports.editar = (req, res) => {
-    Project.findByIdAndUpdate(req.params.id, req.body)
+    Post.findByIdAndUpdate(req.params.id, req.body)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 }
 
 module.exports.eliminar = (req,res) => {
-    Project.findByIdAndRemove(req.params.id)
+    Post.findByIdAndRemove(req.params.id)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 }
 
 module.exports.listar = (req, res) => {
-    Project.find().sort({dueDate: 1}) //Ordena alfabeticamente ascendente
+    Post.find().sort({likes: -1}) //Ordena los post con likes de mayor a menor
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 }
 
 module.exports.buscarPorId = (req, res) => {
-    Project.findById(req.params.id)
+    Post.findById(req.params.id)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 }

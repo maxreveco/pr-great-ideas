@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended : true}));
 
 require('./routes/user.routes')(app);
-require('./routes/project.routes')(app);
+require('./routes/post.routes')(app);
 
 require('./config/mongoose.config');
 
