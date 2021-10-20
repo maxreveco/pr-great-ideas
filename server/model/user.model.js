@@ -19,6 +19,14 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:[true, "Campo password es requerido"],
         minlength:[8, "Campo debe tener al menos 8 caracteres"]
+    },
+    numberPosts:{
+        type:Number,
+        default:0
+    },
+    numberLikes:{
+        type:Number,
+        default:0
     }
 }, { timestamps:true });
 
