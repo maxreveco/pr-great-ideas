@@ -48,3 +48,8 @@ module.exports.login = (req, res) => {
             }
         })
     }   
+    module.exports.listar = (req, res) => {
+        User.find()
+            .then(data => res.json(data))
+            .catch(err => res.status(500).json(err))
+    }
