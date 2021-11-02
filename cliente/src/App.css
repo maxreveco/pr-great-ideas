@@ -3,10 +3,19 @@
 }
 .registro{
   display: inline-block;  
+  border: 1px solid black;
 }
 
 .inicioSesion{
-  display: inline-block;  
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.wrapper{
+  width: 1080;
+  border: 2px solid black;
+  padding: 40px 0;
+  margin: 20px auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {

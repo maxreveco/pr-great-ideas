@@ -1,0 +1,52 @@
+.wrapper {
+    border: solid 2px black;
+    background: linear-gradient(to right, #f0f2f5, #dbdbdb);
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 35px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.mensajeBienvenida{
+    padding-bottom: 30px;
+    text-align: left;
+    margin: 0 50px;
+}
+
+.mainRegistro{
+    border-top: 1px solid black;
+    padding: 50px 0;
+}
+
+.header{
+    border-bottom: 1px solid black;
+    padding-bottom: 25px;
+}
+
+.header button{
+    margin-left: 60%;
+}
+
+.header h1, h2{
+    display: inline-block;
+}
+
+.main{
+    padding: 25px 0;
+    align-items: center;
+}
+
+.main input{
+    margin: 0;
+    padding: 0;
+}
+
+.main h1{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
