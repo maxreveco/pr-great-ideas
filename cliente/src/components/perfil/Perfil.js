@@ -2,13 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import styles from '../estilos/greatIdeas.module.css';
 import UserContext from '../../context/UserContext';
 import { FaRegLightbulb } from 'react-icons/fa'
-import { Input, Button, Form, FormGroup, Row, Col } from 'reactstrap';
+import { Input, Button, Form, FormGroup, Row, Col, Table } from 'reactstrap';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const Perfil = () => {
 
     const context = useContext(UserContext);
+    const [post, setPost] = useState([]);
+    const [refresh, setRefresh]=useState(0);
     const [newPost, setNewPost] = useState({
         id_user: "",
         aliasUser: "",
@@ -16,6 +18,14 @@ const Perfil = () => {
         countLikes: 0,
         userLikes: []
     })
+
+    useEffect(() => {
+        axios.get('/api/post')
+            .then(resp => {
+                console.log('RESP', resp);
+                setPost(resp.data);
+            }).catch(err => ('Error getting Post', 'Error getting the Post list', 'error'))
+    }, [refresh]);
 
     const updateValue = (e) => {
         const { name, value } = e.target;
@@ -67,14 +77,28 @@ const Perfil = () => {
                 </Form>
             </div>
             <div className={styles.listaPost}>
-                <ul className={styles.post}>
-                    <li>Hola Post</li>
-                </ul>
-                <ul className={styles.likes}>
-                    <li>Hola Likes</li>
-                </ul>
-
-
+                <Col xs={{size: 6, offset:2}}>
+                <table style={{border:"none"}}>               
+                        { post.map((p, i) => 
+                        <>
+                            <tr key={i}>
+                                <td>{p.aliasUser} ha posteado: </td>
+                                <td className={styles.postContent}>{p.content}</td>                                    
+                            </tr> 
+                            <tr>                                
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <li><a href="">Me Gusta</a></li>
+                                        <li> Le ha gustado a <a href="">{p.countLikes}</a> personas</li>
+                                        <li>Eliminar</li>
+                                    </ul>
+                                    </td> 
+                            </tr> 
+                        </>                              
+                        )}          
+                </table>   
+                </Col>   
             </div>
         </div >
     )

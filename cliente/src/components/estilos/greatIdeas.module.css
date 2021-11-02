@@ -47,6 +47,19 @@
     padding: 0;
 }
 
+.listaPost ul li{
+    font-size: smaller;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+.postContent{
+    border: 2px solid black;
+}
+
+
+
 
 
 
