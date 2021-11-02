@@ -2,13 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import styles from '../estilos/greatIdeas.module.css';
 import UserContext from '../../context/UserContext';
 import { FaRegLightbulb } from 'react-icons/fa'
-import { Input, Button, Form, FormGroup, Row, Col, Table } from 'reactstrap';
+import { Input, Button, Form, FormGroup, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useHistory } from 'react-router';
 
 const Perfil = () => {
 
     const context = useContext(UserContext);
+    const history = useHistory();
     const [post, setPost] = useState([]);
     const [refresh, setRefresh] = useState(0);
     const [newPost, setNewPost] = useState({
@@ -110,7 +112,7 @@ const Perfil = () => {
                                     <td>
                                         <ul>
                                             <li><a href="" onClick={(e) => meGusta(e, p)} >Me Gusta</a></li>
-                                            <li> Le ha gustado a <a href="">{p.countLikes}</a> personas</li>
+                                            <li> Le ha gustado a <a href="" onClick={(e) => history.push(`/listado/${p._id}`) }>{p.countLikes}</a> personas</li>
                                             <li>Eliminar</li>
                                         </ul>
                                     </td>

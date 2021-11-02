@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import Swal from 'sweetalert2';
 import Login from '../login/Login';
@@ -18,8 +17,6 @@ const initialState = {
 const RegisterForm = () => {
     const [newUser, setNewUser] = useState(initialState);
     const [errors, setErrors] = useState(initialState);
-
-    const history = useHistory();
 
     const updateFormValue = (e) => {
         const { name, value } = e.target;

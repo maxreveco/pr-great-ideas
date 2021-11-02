@@ -46,12 +46,23 @@
     margin: 0;
     padding: 0;
 }
+.contenidoTabla{
+    text-align: left;
+    padding-top: 40px;
+}
 
 .listaPost ul li{
     font-size: smaller;
     display: inline-block;
     margin-right: 10px;
 
+}
+.listaPost table{
+    width: 50%;
+    text-align: left;
+}
+.listaPost thead{
+    background-color: #cccccc;
 }
 
 .postContent{
