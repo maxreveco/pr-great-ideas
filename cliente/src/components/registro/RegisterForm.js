@@ -9,7 +9,7 @@ import { FaRegLightbulb } from 'react-icons/fa'
 
 const initialState = {
     firstName: "",
-    lastName: "",
+    alias: "",
     email: "",
     password: "",
     confirmPassword: ""
@@ -67,9 +67,9 @@ const RegisterForm = () => {
                                 </FormGroup>
 
                                 <FormGroup>
-                                    <Label>Apellido</Label>
-                                    <Input type="text" name="lastName" value={newUser.lastName} onChange={updateFormValue} />
-                                    {errors.lastName && <span style={{ color: "red" }}>{errors.lastName}</span>}
+                                    <Label>Alias</Label>
+                                    <Input type="text" name="alias" value={newUser.alias} onChange={updateFormValue} />
+                                    {errors.alias && <span style={{ color: "red" }}>{errors.alias}</span>}
                                 </FormGroup>
 
                                 <FormGroup>

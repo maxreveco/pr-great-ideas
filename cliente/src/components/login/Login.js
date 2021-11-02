@@ -32,9 +32,8 @@ const Login = () => {
                     context.setUser(resp.data.user);
                     localStorage.setItem('USER_DATA', JSON.stringify(resp.data.user))
                     Swal.fire('Bienvenido', "Has iniciado sesion correctamente", 'success')
-                        .then(history.push('/'))
+                        .then(history.push('/Perfil'))
                         .catch(err => console.log(err))
-
                 }
             })
             .catch(err => {

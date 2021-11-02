@@ -6,6 +6,9 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: [true, "No se ha guardado el id de usuario"]
     },
+    aliasUser: {
+        type: String
+    },
     content: {
         type: String,
         required: [true, "El post debe tener contenido"]

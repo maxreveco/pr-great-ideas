@@ -11,6 +11,7 @@ const Perfil = () => {
     const context = useContext(UserContext);
     const [newPost, setNewPost] = useState({
         id_user: "",
+        aliasUser: "",
         content: "",
         countLikes: 0,
         userLikes: []
@@ -29,6 +30,7 @@ const Perfil = () => {
     const guardarPost = () => {
         const post = {
             id_user: context.user.id,
+            aliasUser: context.user.alias,
             content: newPost.content,
             countLikes: 0,
             userLikes: [context.user]
@@ -36,14 +38,14 @@ const Perfil = () => {
 
         axios.post('/api/new', post)
             .then(resp => {
-                Swal.fire('Registro de Usuario', 'Usuario registrado correctamente', 'success')
+                Swal.fire('Tu idea se registro correctamente', '', 'success')
             })
     }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <h2>Bienvenido: {context.user.firstName} {context.user.lastName}</h2>
+                <h2>Bienvenido: {context.user.alias}</h2>
                 <Button color="danger">Logout</Button>
             </div>
             <div className={styles.main}>

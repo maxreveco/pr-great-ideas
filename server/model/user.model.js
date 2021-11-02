@@ -6,9 +6,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Campo nombre es requerido"]
     },
-    lastName: {
+    alias: {
         type: String,
-        required: [true, "Campo apellido es requerido"]
+        required: [true, "Campo alias es requerido"]
     },
     email: {
         type: String,
