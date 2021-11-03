@@ -20,6 +20,7 @@ const Perfil = () => {
     })
 
     useEffect(() => {
+        context.setUser(context.user)
         axios.get('/api/post')
             .then(resp => {
                 console.log('RESP', resp);
@@ -38,16 +39,31 @@ const Perfil = () => {
     }
 
     const meGusta = (e, p) => {
-        e.preventDefault()
-        axios.put(`/api/post/${p._id}`, { userLikes: [...p.userLikes, context.user] })  //Le damos like al post
-            .then(resp => {
-                Swal.fire('Gracias por tu apoyo!', '', 'success')
-                    .then(resp => setRefresh(refresh + 1))
-                    .catch(err => console.log(err))
-            })
-            .catch(err => {
-                Swal.fire('Error al darle me gusta al elemento', '', 'error')
-            })
+        e.preventDefault();
+        const post = {
+            id_user: p.id_user,
+            aliasUser: p.aliasUser,
+            content: p.content,
+            countLikes: p.countLikes + 1,
+            userLikes: context.user
+        }
+
+        const idUserPost = p.userLikes.filter((el) => el.id === context.user.id);
+        console.log(p.userLikes)
+
+        if (idUserPost.length > 0) {
+            Swal.fire('Ya le has dado me gusta a esta idea!', '', 'error')
+        } else {
+            axios.put(`/api/post/${p._id}`, ({ userLikes: [...p.userLikes, post.userLikes], countLikes: post.countLikes }))  //Le damos like al post y guardamos el user
+                .then(resp => {
+                    Swal.fire('Gracias por tu apoyo!', '', 'success')
+                        .then(resp => setRefresh(refresh + 1))
+                        .catch(err => console.log(err))
+                })
+                .catch(err => {
+                    Swal.fire('Error al darle me gusta al elemento', '', 'error')
+                })
+        }
     }
 
     const guardarPost = () => {
@@ -64,6 +80,7 @@ const Perfil = () => {
                 Swal.fire('Tu idea se registro correctamente', '', 'success')
                     .then(resp => setRefresh(refresh + 1))
             })
+
     }
 
     const logout = () => {
@@ -97,7 +114,7 @@ const Perfil = () => {
                 </Form>
             </div>
             <div className={styles.listaPost}>
-                <Col xs={{ size: 6, offset: 2 }}>
+                <Col xs={{ size: 6, offset: 3 }}>
                     {post.map((p, i) =>
                         <table key={i} style={{ border: "none" }}>
                             <tbody >

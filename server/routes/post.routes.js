@@ -7,4 +7,6 @@ module.exports = (app) => {
     app.get('/api/post/:id', PostController.buscarPorId);
     app.put('/api/post/:id', PostController.editar);
     app.delete('/api/post/:id', PostController.eliminar);
+    app.get('/api/userLikes/:id', PostController.contarLikesUser);
+    app.get('/api/userPosts/:id', PostController.contarPostsUser);
 }

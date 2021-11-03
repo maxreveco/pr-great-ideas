@@ -36,7 +36,9 @@ module.exports.login = (req, res) => {
                                 id: resp._id,
                                 firstName: resp.firstName,
                                 alias: resp.alias,
-                                email: resp.email
+                                email: resp.email,
+                                numberPosts: resp.numberPosts,
+                                numberLikes: resp.numberLikes
                             };
                             const newToken = jwt.sign(payload, jwtconfig.secret);
                             res.cookie("usertoken", newToken, jwtconfig.secret, { httpOly: true })
@@ -52,6 +54,12 @@ module.exports.login = (req, res) => {
 }
 module.exports.listar = (req, res) => {
     User.find()
+        .then(data => res.json(data))
+        .catch(err => res.status(500).json(err))
+}
+
+module.exports.editarUser = (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../context/UserContext';
 
 const Login = () => {
