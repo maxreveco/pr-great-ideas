@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.wrapper li{
+    list-style: none;
+}
+
 .mensajeBienvenida{
     padding-bottom: 30px;
     text-align: left;
@@ -47,7 +51,11 @@
     padding: 0;
 }
 
+<<<<<<< HEAD
 /* .contenidoTabla{
+=======
+.contenidoTabla{
+>>>>>>> 0be49ddc237cc14f92467a4905f99aced1dd3d2c
     text-align: left;
     padding-top: 40px;
 } */
@@ -63,6 +71,7 @@
 
 }
 
+<<<<<<< HEAD
 /* .listaPost table{
     width: 50%;
     text-align: left;
@@ -70,6 +79,14 @@
 
 
 /* .listaPost thead{
+=======
+.listaPost table{
+    width: 50%;
+    text-align: left;
+}
+
+.listaPost thead{
+>>>>>>> 0be49ddc237cc14f92467a4905f99aced1dd3d2c
     background-color: #cccccc;
 } */
 

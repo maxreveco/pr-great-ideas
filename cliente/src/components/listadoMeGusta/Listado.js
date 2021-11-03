@@ -53,6 +53,7 @@ const Listado = () => {
                                 <th>Nombre</th>
                             </tr>
                         </thead>
+<<<<<<< HEAD
                         <tbody >
                             {post.userLikes &&
                                 post.userLikes.map((p, i) => (
@@ -60,6 +61,15 @@ const Listado = () => {
                                         <td><a href="">{p.alias} </a></td>
                                         <td>{p.firstName}</td>
                                     </tr>
+=======
+                            <tbody >                                                                                           
+                                {post.userLikes &&
+                                    post.userLikes.map((p, i)=>( 
+                                        <tr key={i}>
+                                            <td><a href="" onClick={(e) => history.push(`/usuario/${p.id}`) }>{p.alias} </a></td>                                    
+                                            <td>{p.firstName}</td>
+                                        </tr>
+>>>>>>> 0be49ddc237cc14f92467a4905f99aced1dd3d2c
                                 ))}
                         </tbody>
                     </table>
