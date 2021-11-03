@@ -58,9 +58,16 @@ const Perfil = () => {
         } else {
             axios.put(`/api/post/${p._id}`, ({ userLikes: [...p.userLikes, post.userLikes], countLikes: post.countLikes }))  //Le damos like al post y guardamos el user
                 .then(resp => {
-                    Swal.fire('Gracias por tu apoyo!', '', 'success')
-                        .then(resp => setRefresh(refresh + 1))
-                        .catch(err => console.log(err))
+
+                    p.id_user === context.user.id ?
+
+                        Swal.fire('Siempre es bueno reforzar la confianza en tus ideas!', '', 'success')
+                            .then(resp => setRefresh(refresh + 1))
+                            .catch(err => console.log(err)) :
+
+                        Swal.fire('Gracias por tu apoyo!', '', 'success')
+                            .then(resp => setRefresh(refresh + 1))
+                            .catch(err => console.log(err))
                 })
                 .catch(err => {
                     Swal.fire('Error al darle me gusta al elemento', '', 'error')
@@ -85,6 +92,28 @@ const Perfil = () => {
 
     }
 
+    const borrarIdea = (p) => {
+        Swal.fire({
+            title: 'Borrar tu idea',
+            text: 'Estas seguro de borrar tu genial idea?',
+            confirmButtonText: 'Si, tengo una mejor :)',
+            cancelButtonText: 'No, es una buena idea',
+            showCancelButton: true,
+            icon: 'warning'
+        }).then(resp => {
+            if (resp.value) {
+                axios.delete(`/api/post/${p._id}`)
+                    .then(resp => {
+                        Swal.fire('Idea Eliminada', 'La idea se ha eliminado correctamente', 'success');
+                        setRefresh(refresh + 1)
+                        // const prods = props.products.filter(prd => prd._id != p._id);
+                        // props.setProducts(prods);
+                    })
+                    .catch(err => Swal.fire('Error', 'Error al eliminar idea', 'error'));
+            }
+        })
+    }
+
     const logout = () => {
         localStorage.clear();
         window.location.href = '/';
@@ -94,8 +123,8 @@ const Perfil = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <h2>Bienvenido: {context.user.alias}</h2>
-                <Button color="danger" onClick={logout}>Logout</Button>
+                <h2>Bienvenido(a): {context.user.alias}</h2>
+                <a role="button" href="#" onClick={logout}>Logout</a>
             </div>
             <div className={styles.main}>
                 <Form>
@@ -116,7 +145,8 @@ const Perfil = () => {
                 </Form>
             </div>
             <div className={styles.listaPost}>
-                <Col xs={{ size: 6, offset: 3 }}>
+                <h2 className={styles.listaTitulo}>Ideas que te pueden encantar <FaRegLightbulb /></h2>
+                <Col xs={{ size: 10, offset: 3 }}>
                     {post.map((p, i) =>
                         <table key={i} style={{ border: "none" }}>
                             <tbody >
@@ -130,7 +160,7 @@ const Perfil = () => {
                                         <ul>
                                             <li><a href="" onClick={(e) => meGusta(e, p)} >Me Gusta</a></li>
                                             <li> Le ha gustado a <a href="" onClick={(e) => history.push(`/listado/${p._id}`)}>{p.countLikes}</a> personas</li>
-                                            <li>Eliminar</li>
+                                            {p.id_user === context.user.id ? <li><a role="button" href="#" onClick={() => borrarIdea(p)}>Eliminar</a></li> : <li></li>}
                                         </ul>
                                     </td>
                                 </tr>

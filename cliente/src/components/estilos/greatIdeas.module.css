@@ -26,19 +26,25 @@
 .header{
     border-bottom: 1px solid black;
     padding-bottom: 25px;
+    padding: 0 25px;
+    text-align: right;
 }
 
-.header button{
-    margin-left: 60%;
+.header a{
+    margin-left: 50px;
+    margin-bottom: 25px;
 }
 
-.header h1, h2{
+.header h2{
     display: inline-block;
+    margin-right: 820px;
+
 }
 
 .main{
     padding: 25px 0;
     align-items: center;
+    border-bottom: 1px solid black;
 }
 
 .main input{
@@ -51,17 +57,12 @@
     padding: 0;
 }
 
-<<<<<<< HEAD
-/* .contenidoTabla{
-=======
-.contenidoTabla{
->>>>>>> 0be49ddc237cc14f92467a4905f99aced1dd3d2c
-    text-align: left;
-    padding-top: 40px;
-} */
-
 .listaPost{
     padding: 20px 0;
+}
+
+.listaTitulo{
+    margin-bottom: 50px;
 }
 
 .listaPost ul li{
@@ -71,30 +72,40 @@
 
 }
 
-<<<<<<< HEAD
-/* .listaPost table{
-    width: 50%;
-    text-align: left;
-} */
-
-
-/* .listaPost thead{
-=======
 .listaPost table{
     width: 50%;
     text-align: left;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-bottom: 25px;
 }
 
 .listaPost thead{
->>>>>>> 0be49ddc237cc14f92467a4905f99aced1dd3d2c
     background-color: #cccccc;
-} */
+} 
 
 .postContent{
     border: 2px solid black;
     background-color: white;
     text-align: left;
     padding: 5px 15px;
+}
+
+.contenidoTabla table{
+    margin-top: 35px;
+}
+
+.infoUser{
+    margin-top: 25px;
+    padding-bottom: 15px;
+    font-weight: 700;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+.detailPost{
+    text-align: left;
+    font-weight: 500;
 }
 
 

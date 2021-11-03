@@ -5,34 +5,34 @@ import { Button } from 'reactstrap';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 
-const InformacionUsuario =() => {
+const InformacionUsuario = () => {
 
     const [user, setUser] = useState([]);
-    const [likes, setLikes] = useState([]);
-    const [post, setPost] = useState([]);
+    const [likes, setLikes] = useState(0);
+    const [posts, setPosts] = useState(0);
     const history = useHistory();
-    const {id} = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         axios.get(`/api/listado/${id}`)
-        .then(resp => {
-            setUser(resp.data);
-        }).catch(err => ('Error getting User', 'Error getting the User list', 'error'))
+            .then(resp => {
+                setUser(resp.data);
+            }).catch(err => ('Error getting User', 'Error getting the User list', 'error'))
 
         axios.get(`/api/userLikes/${id}`)
-        .then(resp => {
-            console.log('RESP', resp);
-            setLikes(resp.data.length);
-            console.log("Likes", resp.data.length)
-        }).catch(err => ('Error getting likes', 'Error getting the User likes', 'error'))
+            .then(resp => {
+                console.log('RESP', resp);
+                setLikes(resp.data.length);
+                console.log("Likes", resp.data.length)
+            }).catch(err => ('Error getting likes', 'Error getting the User likes', 'error'))
 
         axios.get(`/api/userPosts/${id}`)
-        .then(resp => {
-            console.log('RESP', resp);
-            setPost(resp.data.length);
-            console.log("Post", resp.data.length)
-        }).catch(err => ('Error getting Post', 'Error getting the Post likes', 'error'))        
-        
+            .then(resp => {
+                console.log('RESP', resp);
+                setPosts(resp.data.length);
+                console.log("Post", resp.data.length)
+            }).catch(err => ('Error getting Post', 'Error getting the Post likes', 'error'))
+
     }, []);
 
     const logout = () => {
@@ -40,24 +40,26 @@ const InformacionUsuario =() => {
         window.location.href = '/';
     }
 
-    const volver=()=>{
+    const volver = () => {
         history.push("/perfil");
     }
 
-    return(
-       
+    return (
+
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <Button color="danger" onClick={logout}>Logout</Button>
-                <a href="" onClick={volver}>Inicio...</a> 
-            </div>   
+                <a role="button" href="#" onClick={logout}>Logout</a>
+                <a href="" onClick={volver}>Inicio...</a>
+            </div>
             <div>
-                <ul>
+                <ul className={styles.infoUser}>
                     <li>Nombre: {user.firstName}</li>
                     <li>Alias: {user.alias} </li>
-                    <li>email: {user.email}</li>    
-                    <li>Numero total de post!: {post}</li> 
-                    <li>Numero total de Likes: {likes} </li>                 
+                    <li>email: {user.email}</li>
+                </ul>
+                <ul className={styles.detailPost}>
+                    <li>Numero total de post: {posts}</li>
+                    <li>Numero total de likes: {likes} </li>
                 </ul>
             </div>
         </div >

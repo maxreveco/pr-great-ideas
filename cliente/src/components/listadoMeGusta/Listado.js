@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../estilos/greatIdeas.module.css';
-import { Button, Col } from 'reactstrap';
+import { Button, Col, Row, Table } from 'reactstrap';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router';
 
@@ -24,56 +24,48 @@ const Listado = () => {
         window.location.href = '/';
     }
 
-    const volver = () => {
+    const volverIdeas = () => {
         history.push("/perfil")
     }
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <Button color="danger" onClick={logout}>Logout</Button>
-                <Button color="danger" onClick={volver}>Grandes Ideas</Button>
+                <a color="danger" role="button" href="#" onClick={volverIdeas}>Grandes Ideas</a>
+                <a color="danger" role="button" href="#" onClick={logout}>Logout</a>
             </div>
             <div className={styles.listaPost}>
-                <Col xs={{ size: 7, offset: 2 }}>
-                    <table style={{ border: "none" }}>
-                        <tbody >
-                            <tr>
-                                <td>{post.aliasUser} ha posteado: </td>
-                                <td className={styles.postContent}>{post.content}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </Col>
-                <div className={styles.contenidoTabla}>
-                    <h5>Persona que le ha gustado el post: </h5>
-                    <table style={{ border: "2px solid black" }}>
+                <table style={{ border: "none" }}>
+                    <tbody >
+                        <tr>
+                            <td>{post.aliasUser} ha posteado: </td>
+                            <td className={styles.postContent}>{post.content}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div className={styles.contenidoTabla}>
+                <h3>Usuarios(as) agradecidos de tu idea: </h3 >
+                <Col>
+                    <Table bordered size="sm">
                         <thead>
                             <tr>
                                 <th>Alias</th>
                                 <th>Nombre</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
-<<<<<<< HEAD
                         <tbody >
                             {post.userLikes &&
                                 post.userLikes.map((p, i) => (
                                     <tr key={i}>
-                                        <td><a href="">{p.alias} </a></td>
+                                        <td><a href="#" role="button" onClick={(e) => history.push(`/usuario/${p.id}`)}>{p.alias} </a></td>
                                         <td>{p.firstName}</td>
+                                        <td>{p.email}</td>
                                     </tr>
-=======
-                            <tbody >                                                                                           
-                                {post.userLikes &&
-                                    post.userLikes.map((p, i)=>( 
-                                        <tr key={i}>
-                                            <td><a href="" onClick={(e) => history.push(`/usuario/${p.id}`) }>{p.alias} </a></td>                                    
-                                            <td>{p.firstName}</td>
-                                        </tr>
->>>>>>> 0be49ddc237cc14f92467a4905f99aced1dd3d2c
                                 ))}
                         </tbody>
-                    </table>
-                </div>
+                    </Table>
+                </Col>
             </div>
         </div >
     )
