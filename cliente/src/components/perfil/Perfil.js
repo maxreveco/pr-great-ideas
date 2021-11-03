@@ -129,7 +129,7 @@ const Perfil = () => {
                                     <td>
                                         <ul>
                                             <li><a href="" onClick={(e) => meGusta(e, p)} >Me Gusta</a></li>
-                                            <li> Le ha gustado a <a href="" onClick={(e) => history.push(`/listado/${p._id}`) }>{p.countLikes}</a> personas</li>
+                                            <li> Le ha gustado a <a href="" onClick={(e) => history.push(`/listado/${p._id}`)}>{p.countLikes}</a> personas</li>
                                             <li>Eliminar</li>
                                         </ul>
                                     </td>

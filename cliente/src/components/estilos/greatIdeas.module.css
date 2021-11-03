@@ -46,9 +46,14 @@
     margin: 0;
     padding: 0;
 }
-.contenidoTabla{
+
+/* .contenidoTabla{
     text-align: left;
     padding-top: 40px;
+} */
+
+.listaPost{
+    padding: 20px 0;
 }
 
 .listaPost ul li{
@@ -57,16 +62,22 @@
     margin-right: 10px;
 
 }
-.listaPost table{
+
+/* .listaPost table{
     width: 50%;
     text-align: left;
-}
-.listaPost thead{
+} */
+
+
+/* .listaPost thead{
     background-color: #cccccc;
-}
+} */
 
 .postContent{
     border: 2px solid black;
+    background-color: white;
+    text-align: left;
+    padding: 5px 15px;
 }
 
 
