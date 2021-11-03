@@ -58,6 +58,12 @@ module.exports.listar = (req, res) => {
         .catch(err => res.status(500).json(err))
 }
 
+module.exports.buscarPorId = (req, res) => {
+    User.findById(req.params.id)
+        .then(data => res.json(data))
+        .catch(err => res.status(500).json(err))
+}
+
 module.exports.editarUser = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body)
         .then(data => res.json(data))

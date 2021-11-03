@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.wrapper li{
+    list-style: none;
+}
+
 .mensajeBienvenida{
     padding-bottom: 30px;
     text-align: left;
@@ -46,6 +50,7 @@
     margin: 0;
     padding: 0;
 }
+
 .contenidoTabla{
     text-align: left;
     padding-top: 40px;
@@ -57,10 +62,12 @@
     margin-right: 10px;
 
 }
+
 .listaPost table{
     width: 50%;
     text-align: left;
 }
+
 .listaPost thead{
     background-color: #cccccc;
 }

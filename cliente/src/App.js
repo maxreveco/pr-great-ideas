@@ -6,6 +6,7 @@ import UserContext from './context/UserContext';
 import RegisterForm from './components/registro/RegisterForm';
 import Perfil from "./components/perfil/Perfil";
 import Listado from "./components/listadoMeGusta/Listado";
+import InformacionUsuario from "./components/informacionUsuario/infoUsuario";
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path ="/listado/:id">
               <Listado/>
+            </Route>
+            <Route path ="/usuario/:id">
+              <InformacionUsuario/>
             </Route>
           </Switch>
         </Container>
