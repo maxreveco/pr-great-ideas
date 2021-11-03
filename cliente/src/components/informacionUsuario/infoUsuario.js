@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../estilos/greatIdeas.module.css';
-import { Button } from 'reactstrap';
-
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -17,21 +16,21 @@ const InformacionUsuario = () => {
         axios.get(`/api/listado/${id}`)
             .then(resp => {
                 setUser(resp.data);
-            }).catch(err => ('Error getting User', 'Error getting the User list', 'error'))
+            }).catch(() => Swal.fire('Error getting User', 'Error getting the User list', 'error'))
 
         axios.get(`/api/userLikes/${id}`)
             .then(resp => {
                 console.log('RESP', resp);
                 setLikes(resp.data.length);
                 console.log("Likes", resp.data.length)
-            }).catch(err => ('Error getting likes', 'Error getting the User likes', 'error'))
+            }).catch(() => Swal.fire('Error getting likes', 'Error getting the User likes', 'error'))
 
         axios.get(`/api/userPosts/${id}`)
             .then(resp => {
                 console.log('RESP', resp);
                 setPosts(resp.data.length);
                 console.log("Post", resp.data.length)
-            }).catch(err => ('Error getting Post', 'Error getting the Post likes', 'error'))
+            }).catch(() => Swal.fire('Error getting Post', 'Error getting the Post likes', 'error'))
 
     }, []);
 

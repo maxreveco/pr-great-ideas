@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../estilos/greatIdeas.module.css';
-import { Button, Col, Row, Table } from 'reactstrap';
+import { Col, Table } from 'reactstrap';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Listado = () => {
 
@@ -15,7 +16,7 @@ const Listado = () => {
             .then(resp => {
                 console.log('RESP', resp);
                 setPost(resp.data);
-            }).catch(err => ('Error getting Post', 'Error getting the Post list', 'error'))
+            }).catch(() => Swal.fire('Error getting Post', 'Error getting the Post list', 'error'))
 
     }, []);
 

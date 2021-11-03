@@ -27,7 +27,7 @@ const Perfil = () => {
             .then(resp => {
                 console.log('RESP', resp);
                 setPost(resp.data);
-            }).catch(err => ('Error getting Post', 'Error getting the Post list', 'error'))
+            }).catch(() => Swal.fire('Error getting Post', 'Error getting the Post list', 'error'))
     }, [refresh]);
 
     const updateValue = (e) => {
@@ -109,7 +109,7 @@ const Perfil = () => {
                         // const prods = props.products.filter(prd => prd._id != p._id);
                         // props.setProducts(prods);
                     })
-                    .catch(err => Swal.fire('Error', 'Error al eliminar idea', 'error'));
+                    .catch(() => Swal.fire('Error', 'Error al eliminar idea', 'error'));
             }
         })
     }
@@ -121,55 +121,57 @@ const Perfil = () => {
 
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.header}>
-                <h2>Bienvenido(a): {context.user.alias}</h2>
-                <a role="button" href="#" onClick={logout}>Logout</a>
-            </div>
-            <div className={styles.main}>
-                <Form>
-                    <Row>
-                        <Col xs={1}>
-                            <FaRegLightbulb />
-                        </Col>
-                        <Col xs={{ size: 4 }}>
-                            <FormGroup>
-                                <Input type="text" name="content" placeholder="Ingresa aqui tu idea!" onChange={updateValue} />
-                                {/* {errors.firstName && <span style={{ color: "red" }}>{errors.firstName}</span>} */}
-                            </FormGroup>
-                        </Col>
-                        <Col xs={{ size: 1 }}>
-                            <Button color="success" onClick={guardarPost}>Idea!</Button>
-                        </Col>
-                    </Row>
-                </Form>
-            </div>
-            <div className={styles.listaPost}>
-                <h2 className={styles.listaTitulo}>Ideas que te pueden encantar <FaRegLightbulb /></h2>
-                <Col xs={{ size: 10, offset: 3 }}>
-                    {post.map((p, i) =>
-                        <table key={i} style={{ border: "none" }}>
-                            <tbody >
-                                <tr>
-                                    <td>{p.aliasUser} ha posteado: </td>
-                                    <td className={styles.postContent}>{p.content}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <ul>
-                                            <li><a href="" onClick={(e) => meGusta(e, p)} >Me Gusta</a></li>
-                                            <li> Le ha gustado a <a href="" onClick={(e) => history.push(`/listado/${p._id}`)}>{p.countLikes}</a> personas</li>
-                                            {p.id_user === context.user.id ? <li><a role="button" href="#" onClick={() => borrarIdea(p)}>Eliminar</a></li> : <li></li>}
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    )}
-                </Col>
-            </div>
-        </div >
+        context.user ?
+            <div className={styles.wrapper}>
+                <div className={styles.header}>
+                    <h2>Bienvenido(a): {context?.user?.alias}</h2>
+                    <a role="button" href="#" onClick={logout}>Logout</a>
+                </div>
+                <div className={styles.main}>
+                    <Form>
+                        <Row>
+                            <Col xs={1}>
+                                <FaRegLightbulb />
+                            </Col>
+                            <Col xs={{ size: 4 }}>
+                                <FormGroup>
+                                    <Input type="text" name="content" placeholder="Ingresa aqui tu idea!" onChange={updateValue} />
+                                    {/* {errors.firstName && <span style={{ color: "red" }}>{errors.firstName}</span>} */}
+                                </FormGroup>
+                            </Col>
+                            <Col xs={{ size: 1 }}>
+                                <Button color="success" onClick={guardarPost}>Idea!</Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </div>
+                <div className={styles.listaPost}>
+                    <h2 className={styles.listaTitulo}>Ideas que te pueden encantar <FaRegLightbulb /></h2>
+                    <Col xs={{ size: 10, offset: 3 }}>
+                        {post.map((p, i) =>
+                            <table key={i} style={{ border: "none" }}>
+                                <tbody >
+                                    <tr>
+                                        <td><a href="#" role="button" onClick={(e) => history.push(`/usuario/${p.id_user}`)}>{p.aliasUser}</a> ha posteado: </td>
+                                        <td className={styles.postContent}>{p.content}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <ul>
+                                                <li><a href="" onClick={(e) => meGusta(e, p)} >Me Gusta</a></li>
+                                                <li> Le ha gustado a <a href="" onClick={(e) => history.push(`/listado/${p._id}`)}>{p.countLikes}</a> personas</li>
+                                                {p.id_user === context.user.id ? <li><a role="button" href="#" onClick={() => borrarIdea(p)}>Eliminar</a></li> : <li></li>}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        )}
+                    </Col>
+                </div>
+            </div > :
+            <h1>Pagina no autorizada</h1>
     )
 }
 
